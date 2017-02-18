@@ -1,0 +1,80 @@
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<div class="container-fluid hightlight-section">
+	<div class="container">
+		<div class="" ng-controller="SecurityCtrl">
+			<div class="row">
+				<div class="col-md-6 ">
+					<span>We operate events, hang out on a Slack channel, and
+						publish our code. Our activities reach thousands of developers
+						every month.</span>
+				</div>
+				<div class="col-md-6  ">
+					<span>Speak at our events, or <a ng-click="goadd()"
+						style="color: orange; cursor: pointer">Add your events here</a> to
+						be notified when we do one. Watch videos from past events on
+						OffRoads TV. Coming up:
+					</span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div class="container animated fadeinUp">
+	<div class=" m1" ng-controller="EventsCtrl" ng-init="getAllEvents()">
+		<div class="cardset row top-buffer" >
+		
+			<div class="row">
+				<div class="col-md-3 col-sm-4">
+					<div class="input-group">
+	           			<input type="text" class="search-query form-control"  ng-model="searchText"  ng-model-options="{ updateOn: 'blur' }" ng-change="getNextEvents(1)" placeholder="Search Event" />
+	           			<span class="input-group-btn">
+	               			<button class="btn btn-primary buth" type="button"><span class=" glyphicon glyphicon-search"></span></button>
+	           			</span>
+      	 			</div>
+				</div>
+			</div>
+			
+			<div class="row margint ">
+				<div class="col-md-4" ng-repeat="event in eventFilterList">
+					<div class="fade-in">
+						<div ng-click="getEventDetails(event)"
+							class="card card1 card-body1"
+							style="padding: 6px; overflow-y: hidden">
+							<h4 class="card-title text-info title">{{event.eventName | limitTo:35}}</h4>
+
+							<p>
+								<span class="date">{{event.eventDate | date:"dd-MM-yyyy"}}</span>,
+									<span class="text-warning location">{{ event.eventLocation| limitTo:31}}</span>
+							</p>
+							<hr style="border-top: 1px solid #C8C8C8;">
+							<p class="card-text"></p>
+							<p class="card-text">
+								<span class="multitext eventdetail">{{event.eventDesc | limitTo:120 }}...</span>
+
+							</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row margint"  >
+			<div
+				class="col-md-2 col-md-offset-4  col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-4  arrow1">
+				<a href="" ng-click="getNextEvents(previndex)"><span
+					class="glyphicon glyphicon-chevron-left" style="color: #1f3741"></a>
+			</div>
+			<div
+				class="col-md-2 col-xs-2 col-xs-offset-1 col-sm-2 col-sm-offset-1 col-md-offset-1 arrow">
+				<a href="" ng-click="getNextEvents(nextindex)"><span
+					class="glyphicon glyphicon-chevron-right" style="color: #1f3741"></span></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

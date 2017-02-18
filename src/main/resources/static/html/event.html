@@ -1,0 +1,146 @@
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<div class="container-fluid hightlight-section">
+	<div class="">
+		<div class="row">
+			<div class="col-xs-5 col-sm-8 col-md-10" ><p class="">Event Details</p></div>
+			<div class=" col-md-1 col-sm-2 col-xs-4"
+				ng-show="!isRegistered && isNotRegistered()">
+				<button type="button" class="btn btn-success " ng-click="register()">Register</button>
+			</div>
+
+			<div class=" col-md-1 col-sm-2 col-xs-4"
+				ng-show="isRegistered || !isNotRegistered()"><button type="button" class="btn btn-info registerdbutton" disabled>Registered</button>
+			</div>
+
+			<div class="col-md-1  col-sm-1 col-xs-1">
+				<button type="button" class="btn btn-success" ng-show="canEdit"
+					ng-click="eventAdmin() ">Edit</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-controller="EventDetailCtrl">
+    <input type="hidden" id="event-id" value="{{eventDetailObj.eventId}}"/>  
+	<div id="" class="container-fluid" >
+		<div class="row">
+			<div class="col-md-2 col-sm-4 margint ">
+			 <div class="panel-group" id="accordion">
+              <div class="panel panel-idea  ">
+               <div class="panel-heading">
+                <h4 class="panel-title accordion-toggle text-center" data-toggle="collapse" data-parent="#accordion" 
+                 data-target="#collapseOne" style="cursor:pointer">
+               
+                 <span class="glyphicon glyphicon-minus pull-left" "></span>
+                 Attachments
+                
+               </h4>
+            </div>
+             <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body">
+               <span class="text-center" ng-show="eventDetailObj.attachments.length == 0">No attachments</span>
+					   <div ng-show="eventDetailObj.attachments.length > 0">
+						<ul class="userlist">
+							<li class="list"
+								ng-repeat="attachment in eventDetailObj.attachments"
+								value="attachment.id"><a
+								href="/downloadAttachment/{{attachment.id}}" target="_blank"
+								class="link">{{attachment.filename}}</a>
+							</li>
+						</ul>
+					</div>
+             </div>
+           </div>
+         </div>
+		
+		
+              <div class="panel panel-idea">
+               <div class="panel-heading">
+                <h4 class="panel-title  accordion-toggle text-center"
+                 data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" style="cursor:pointer">
+                 
+                 <span class="glyphicon glyphicon-plus pull-left" ></span>
+                 <span class=""> Participants</span>
+               
+               </h4>
+            </div>
+             <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+               <div  ng-show="canEdit">
+			   
+			     
+			        <span ng-show="event.eventParticipants.length == 0">No
+										participants</span>
+					     <table class="table"
+						   ng-show="event.eventParticipants.length > 0">
+								
+									<tr ng-repeat="participant in event.eventParticipants" style="word-break:break-all"
+										class="text-center" >
+										 <td  style="font-size:14px;word-break:break-all">
+										 <span class="">{{participant.firstName + "   " + participant.lastName}}</span>
+										 <br>
+										 <span class="">({{participant.emailId}})</span></td>
+									</tr>
+						</table>
+				      
+			 </div>
+             </div>
+           </div>
+         </div>
+		</div>
+		</div>
+			<div class="">
+				<div class="col-md-9 col-sm-8 margint ">
+					<div class="eventfonts" style="padding: 25px;">
+
+						<h2 class="text-success ">{{eventDetailObj.eventName}}</h2>
+
+						  <ol class="orderlist">
+							<li class="liineventpage">
+							<span  class="text-warning labelineventpage">Date: </span> 
+							<span class="dateineventpage">{{eventDetailObj.eventDate | date:'dd-MMM-yyyy @h:mma'}} (#{{eventDetailObj.eventId}})</span></li>
+
+							<li class="liineventpage">
+							<span  class="text-warning labelineventpage">Location: </span>
+							 <span class="eventlocation">{{eventDetailObj.eventLocation}}</span></li>
+
+
+							<li class="liineventpage"><span class="text-warning labelineventpage">Presenter: </span>
+									<span class="presenter">{{eventDetailObj.eventPresenterDeatils}}</span> </li>
+							<li  class="liineventpage">	
+							 <span  class="text-warning labelineventpage">Event Admin: </span>
+							<span class="adminname">
+									{{eventDetailObj.eventAdminName}}  (<a style="padding:3px"
+									href="mailto:{{eventDetailObj.eventAdminEmail}} "
+									>{{eventDetailObj.eventAdminEmail}}</a>) 
+							</span></li>
+
+						</ol>
+
+						<hr>
+						<div class="row text-center">
+							<div class="col-md-12 col-sm-12  eventdescription">
+								<h> {{eventDetailObj.eventDesc|limitTo:limit}}<h class="fade-in1" ng-show="myvalue">{{eventDetailObj.eventDesc  | limitTo: limit1: 1500}}</h></h>
+								<a href="" class="card-link" 
+									ng-show="eventDetailObj.eventDesc.length>=limit"
+									ng-click="changelink()">{{link}}</a>
+								
+							</div>
+						</div>
+		
+                        <disqus ></disqus>
+					</div>
+				</div>
+			</div>
+		</div>                                
+	</div>
+</div>
+
+<script>
+$('.collapse').on('shown.bs.collapse', function(){
+	$(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+	}).on('hidden.bs.collapse', function(){
+	$(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+	});
+</script>

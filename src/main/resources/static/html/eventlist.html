@@ -1,0 +1,99 @@
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<div ng-controller="EventListCtrl">
+	<div class="container-fluid hightlight-section">
+		<div class="">
+			<div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-10 col-sm-9 col-xs-7">
+								<p class="">Events</p>
+							</div>
+							<div class="col-md-2 col-sm-2 col-xs-4">
+								<button type="button" class="btn btn-success pull-right" 
+									ng-click="goadd()"  >Add
+									Event</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row margint">
+
+			<div class="col-md-3 col-sm-4 ">
+				<div class="input-group">
+					<input type="text" class="search-query form-control"
+						ng-model="event" ng-minlength="2" placeholder="search by  Event name" /> <span
+						class="input-group-btn">
+						<button class="btn btn-primary buth" type="button">
+							<span class=" glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 ">
+				<div class="input-group">
+					<input type="text" class="search-query form-control"
+						ng-model="presenter" ng-minlength="2" placeholder="search by Presenter" /> <span
+						class="input-group-btn">
+						<button class="btn btn-primary buth" type="button">
+							<span class=" glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+			
+				<div class="col-md-3 col-sm-4 ">
+				<div class="input-group">
+					<input type="text" class="search-query form-control"
+						ng-model="searchDate" ng-minlength="1" placeholder="search by Date" /> <span
+						class="input-group-btn">
+						<button class="btn btn-primary buth" type="button">
+							<span class=" glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+				
+			<div class="col-md-3 col-sm-4">
+				<input id="clearbutton" class="btn btn-primary" type="button"
+					ng-click="clearFilter()" value="Clear">
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row margint">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<table class="table table-bordered bort ">
+					<thead>
+						<tr>
+							<th class="text-center">Event Name</th>
+							<th class="text-center">Presenter</th>
+							<th class="text-center">Date</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							ng-repeat="event in eventList | filter:event | filter:presenter | filter:filterValue | orderBy:'eventDate':true">
+							<td class="td1">{{event.eventName}}</td>
+							<td class="td1">{{event.eventPresenterDeatils}}</td>
+							<td class="td1 text-center">{{event.eventDate |
+								date:"dd-MM-yyyy"}}</td>
+							<td class="textc"><a ng-click="delete(event.eventId)"
+								class="btn btn-danger">Delete</a> <a
+								ng-click="goEdit(event.eventId)" class="btn btn-primary">Edit</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

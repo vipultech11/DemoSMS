@@ -1,0 +1,172 @@
+
+
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<div class="container-fluid hightlight-section">
+	<div class="">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-11">
+						<p class="">Add event</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row margint">
+		<div class="col-md-3 col-md-offset-8 col-sm-6 col-sm-offset-5">
+				<mandatory class="text-danger"></mandatory>
+		</div>
+	</div>
+	<div class="row margint">
+		<div class="col-md-8 col-md-offset-2">
+			<div ng-controller="EventsCtrl">
+
+				<div class="row bor" style="border: 1px solid skyblue">
+					<div class="col-md-12 col-sm-12">
+						<form name="eventForm" class="eventForm form-horizontal">
+						  <div class="form-group">
+							<div class="row margint">
+								<div class="col-md-3">
+									<label class=" control-label" >Name:</label>
+								</div>
+								<div class="col-md-8">
+									<input name="eventname" type="text" ng-maxlength="255"
+										class="form-control textbox" placeholder="event name"
+										ng-model="eventobj.eventName" required />
+										<span
+										ng-show="eventForm.eventname.$dirty && eventForm.eventname.$error.required" class="text-danger">Event name is required
+										</span> <span
+										ng-show="eventForm.eventname.$dirty && eventForm.eventname.$error.maxlength"
+										class="text-danger">Event name maximum length should be
+										255</span>
+								</div>
+								<div class="col-md-1">
+									<span class="text-danger span">*</span>
+								</div>
+							</div>
+						 
+							<div class="row margint">
+								<div class="col-md-3">
+									<label class="control-label">Date:</label>
+								</div>
+								<div class="col-md-8">
+									<input type="text" name="eventdate" validate-date
+										ng-click="datepickers.eventDate = true"
+										datepicker-popup="dd-MMM-yyyy" popup-placement="bottom-left"
+										uib-datepicker-popup="dd-MMM-yyyy"
+										is-open="datepickers.eventDate"
+										datepicker-options="dateOptions" class="form-control textbox"
+										placeholder="event date" ng-model="eventobj.eventDate"
+										required  readonly> 
+										
+											<span
+										ng-show="eventForm.eventdate.$dirty && eventForm.eventdate.$error.required"
+										class="text-danger">Date is required</span>
+										<span
+										ng-show="eventForm.eventdate.$dirty && eventForm.eventdate.$error.date"
+										class="text-danger">Date is invalid.
+										</span>
+								</div>
+								<div class="col-md-1">
+									<span class="text-danger span">*</span>
+
+								</div>
+							</div>
+							<div class="row margint">
+								<div class="col-md-3">
+									<label class="control-label">Location:</label>
+								</div>
+								<div class="col-md-8">
+									<input name="location" type="text" ng-maxlength="255"
+										class="form-control textbox" placeholder="event location"
+										ng-model="eventobj.eventLocation" required> <span
+										ng-show="eventForm.location.$dirty && eventForm.location.$error.required"
+										class="text-danger">Event location is required
+										</span> <span
+										ng-show="eventForm.location.$dirty && eventForm.location.$error.maxlength"
+										class="text-danger">Event location maximum length
+											should be 255
+											</span>
+								</div>
+								<div class="col-md-1">
+									<span class="text-danger span">*</span>
+
+								</div>
+							</div>
+							<div class="row margint">
+								<div class="col-md-3">
+									<label class="control-label">Country:</label>
+								</div>
+								<div class="col-md-8">
+									<input type="text" name="country" ng-maxlength="255"
+										class="form-control textbox" placeholder="event country"
+										ng-model="eventobj.eventCountry" required> <span
+										ng-show="eventForm.country.$dirty && eventForm.country.$error.maxlength"
+										class="text-danger">Event country maximum length should
+										be 255
+										</span>
+								</div>
+
+							</div>
+							<div class="row margint">
+								<div class="col-md-3">
+									<label class="control-label">Description:</label>
+								</div>
+								<div class="col-md-8">
+									<textarea name="description" rows="5" cols="100"
+										class="form-control textbox" placeholder="event description"
+										ng-model="eventobj.eventDesc" required></textarea>
+									<span
+										ng-show="eventForm.description.$dirty && eventForm.description.$error.required"
+										class="text-danger">Event description is required.
+										</span>
+								</div>
+								<div class="col-md-1">
+									<span class="text-danger span">*</span>
+
+								</div>
+							</div>
+							<div class="row margint">
+								<div class="col-md-3">
+									<label class="control-label">Presenter:</label>
+								</div>
+								<div class="col-md-8">
+									<input type="textarea" ng-maxlength="255" name="presenter"
+										class="form-control textbox" placeholder="presenter details"
+										ng-model="eventobj.eventPresenterDeatils" required> <span
+										ng-show="eventForm.presenter.$dirty && eventForm.presenter.$error.required"
+										class="text-danger">Presenter is required
+										</span> <span
+										ng-show="eventForm.location.$dirty && eventForm.location.$error.maxlength"
+										class="text-danger">Presenter maximum length should be
+											255
+											</span>
+								</div>
+								<div class="col-md-1">
+									<span class="text-danger span">*</span>
+
+								</div>
+							</div>
+							<div class="row margint">
+								<div class="col-md-4 col-xs-4 col-md-offset-8">
+									<button ng-disabled="eventForm.$invalid" type="button" style="display: inline-block;vertical-align: top;"
+										class="btn btn-primary" ng-click="saveEvent(eventobj)">Create</button>
+		
+									<button type="button" class="btn btn-primary" style="display: inline-block;vertical-align: top;"
+										ng-click="cancel()">Cancel</button>
+								</div>
+							</div>
+						</div>		
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,92 @@
+
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<div class="container-fluid hightlight-section">
+	<div class="">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-11">
+						<p class="">{{pageHeader}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row margint">
+		<div class="col-md-3 col-md-offset-8 col-sm-6 col-sm-offset-5">
+				<mandatory class="text-danger"></mandatory>
+		</div>
+	</div>
+	<div class="row margint">
+		<div class="col-md-8 col-md-offset-2  bor" style="border: 1px solid skyblue"
+			ng-controller="EditRoleCtrl">
+			<div class="row">
+				<div class="col-md-12">
+					<form name="roleForm" class="form-horizontal">
+					  <div class="form-group">
+						<div class="row margint">
+							<div class="col-md-3">
+								<label class="control-label">Name:</label>
+							</div>
+							<div class="col-md-6">
+								<input name="name" type="text" ng-maxlength="255"
+									class="form-control textbox" placeholder="name"
+									ng-model="role.name" required> <span
+									ng-show="roleForm.name.$dirty && roleForm.name.$error.required"
+									class="text-danger"> Name is required.</span> <span
+									ng-show="roleForm.name.$dirty &&roleForm.name.$error.maxlength"
+									class="text-danger">Name should be maximumlength .</span>
+							</div>
+							<div class="col-md-1">
+								<span class="text-danger span">*</span>
+							</div>
+						</div>
+						<div class="row margint">
+							<div class="col-md-3">
+								<label class="control-label">Description:</label>
+							</div>
+							<div class="col-md-6">
+								<input name="description" type="textarea"
+									class="form-control textarea" placeholder="description"
+									ng-model="role.description" > 
+							</div>
+							
+						</div>
+						<div class="row margint">
+							<div class="col-md-3">
+								<label class="control-label">Privileges:<label class="control-label">
+							</div>
+						</div>
+						<div class="">
+							<div class="row" ng-repeat="privilege in privileges">
+								<div class="col-md-3 col-md-offset-3">
+									<span>{{privilege.code}}</span>
+								</div>
+								<div class="col-md-1">
+									<input class="" type="checkbox" name="privilegeId"
+										placeholder="privilege" ng-model="privilege.selected">
+								</div>
+							</div>
+						</div>
+						
+						<div class="row margint">
+								<div class="col-md-4 col-xs-4 col-md-offset-7">
+									<button ng-disabled="roleForm.$invalid" type="button" style="display: inline-block;vertical-align: top;"
+									class="btn btn-primary" ng-click="save()">Save</button>
+		
+									<button type="button" class="btn btn-primary" style="display: inline-block;vertical-align: top;"
+									ng-click="cancel()">Cancel</button>
+								</div>
+						</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

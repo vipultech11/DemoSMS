@@ -1,0 +1,47 @@
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<div ng-controller="RoleListCtrl">
+
+	<div class="container-fluid hightlight-section">
+		<div class="">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-10 col-sm-9 col-xs-7"><p class="">Roles</p></div>
+						<div class="col-md-2 col-sm-2 col-xs-4">
+							<button type="button" class="btn btn-success pull-right "
+								ng-click="newRole()">Add Role</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row margint">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<table class="table table-bordered bort">
+					<thead>
+						<tr>
+							<th class="text-center">Role Name</th>
+							<th class="text-center">Description</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="role in roles">
+							<td class="td1">{{role.name}}</td>
+							<td class="td1">{{role. description}}</td>
+							<td class="textc td1 text-center"><a
+								ng-click="delete(role.roleId)" class="btn btn-danger">Delete</a>
+								<a href="/#/editrole/{{role.roleId}}" class="btn btn-primary">Edit</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

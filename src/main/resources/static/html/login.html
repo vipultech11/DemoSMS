@@ -1,0 +1,119 @@
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+	
+<div style="background:  #ececec;" class="fade-in">
+	<div class="container-fluid">
+		<div class="row margint ">
+			<div class="col-md-5 col-md-offset-1 ">
+				<p class="logo2 basicfont"
+					>
+					Welcome to offRoads , a channel where you can find what's going on !!!! Only thing you need to do is login, have a look at the events
+					 going on and register for desired event 
+					 and manage your events at MyEvents page. <br> <span
+						style="font-style: italic; padding-top: 17px;"> Great minds
+						discuss Great things.</span>
+				</p>
+
+
+			</div>
+
+			<div class="col-md-4 col-md-offset-1">
+				<div ng-controller="LoginCtrl">
+					<form name="form" ng-submit="form.$valid && login()" novalidate class="flex form-horizontal">
+						<div class="card form" style="border: 1px solid  #ececec;">
+							<div class="row margint">
+								<div class="col-md-4 col-md-offset-8">
+										<mandatory class="text-danger"></mandatory>
+								</div>
+							</div>
+							<div class="card-body basicfont">
+								<div class="row text-center">
+									<header style="font-size: 25px">User Login</header>
+								</div>
+								<hr>
+								<div class="row margint">
+									<div class="col-md-3">
+										<label class="basicfont control-label">Email-Id:</label>
+									</div>
+									<div class="col-md-7">
+										<input type="email" name="emailid" required
+											class="form-control textbox" id="Email" autocomplete="off"
+											placeholder="Enter Email-Id" ng-model="username"
+											style="font-family: 'Quicksand', sans-serif"; > <span
+											ng-show="form.emailid.$dirty && form.emailid.$error.required"
+											class="text-danger">Email-Id is required.</span> <span
+											ng-show="form.emailid.$dirty && form.emailid.$error.email"
+											class="text-danger">Email-Id is invalid</span>
+
+									</div>
+									<div class="col-md-1">
+										<span class="text-danger span">*</span>
+									</div>
+								</div>
+
+								<div class="row margint">
+									<div class="col-md-3">
+										<label class="basicfont control-label">Password:</label>
+									</div>
+									<div class="col-md-7">
+										<input type="password" required class="form-control textbox basicfont"
+											id="Password" placeholder="Enter Password" ng-model="password"
+											>
+									</div>
+									<div class="col-md-1">
+										<span class="text-danger span">*</span>
+									</div>
+								</div>
+								<div class="">
+
+									<div class="row margint">
+										<div class="col-md-10  col-md-offset-6">
+											<button type="submit" class="btn btn-primary " style="display: inline-block; vertical-align: top;"
+												ng-disabled="form.$invalid">Login</button>
+
+										
+											<button type="button" class="btn btn-primary" style="display: inline-block;width:68px; vertical-align: top;"
+												ng-click="newRegister()">Sign up</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="row margint">
+			<div class="col-md-2 col-md-offset-1">
+				<img src="images/mark.png" class="logo1 img-circle"
+					style="height: 150px; width: 150px">
+			</div>
+			<div class="col-md-6 col-md-offset- form" style="margin-top: 15px;">
+				<p  class="basicfont">What
+					is this?</p>
+				<p class="basicfont">
+					What ever happens around you in the company, we will put it
+					in-front of you through our channel.</p>
+			</div>
+		</div>
+		<div class="row margint">
+			<div class="col-md-2 col-md-offset-1">
+				<img src="images/Mail.png" class="logo1 img-rounded"
+					style="height: 150px; width: 150px">
+			</div>
+			<div class="col-md-6 col-md-offset- form" style="margin-top: 25px;">
+				<p class="basicfont">Contact/Help</p>
+
+				<p class="basicfont">
+					We'd love to help you any time !!! The right way to contact for
+					help is give right below-<br> contact@comakeit.com
+				</p>
+			</div>
+
+		</div>
+	</div>
+</div>

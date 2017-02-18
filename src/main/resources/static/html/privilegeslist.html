@@ -1,0 +1,73 @@
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<div ng-controller="PrivilegeListCtrl">
+	<div class="container-fluid hightlight-section">
+		<div class="">
+			<div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-10 col-sm-9 col-xs-7">
+								<p class="">Privileges</p>
+							</div>
+							<div class="col-md-2 col-sm-2 col-xs-4">
+								<button type="button" class="btn btn-success pull-right" 
+									ng-click="newPrivilege()" >Add
+									Privilege</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row margint">
+			<div class="col-md-12 col-xs-12 col-sm-12">
+				<table class="table table-bordered bort">
+					<thead>
+						<tr>
+							<th class="text-center">Privilege Id</th>
+							<th class="text-center">Privilege Code</th>
+							<th class="text-center">Description</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="privilege in privileges">
+							<td class="td2 text-center">{{privilege.privilegeId}}</td>
+							<td class="td2 ">{{privilege.code}}</td>
+							<td class=" td2">{{privilege. description}}</td>
+							<td class="textc td2 text-center"><a
+								ng-click="delete(privilege.privilegeId)" class="btn btn-danger">Delete</a>
+								<a href="/#/editprivilege/{{privilege.privilegeId}}"
+								class="btn btn-primary">Edit</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

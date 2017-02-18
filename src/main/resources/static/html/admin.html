@@ -1,0 +1,120 @@
+
+<meta name="viewport"
+	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+	<div class="container-fluid hightlight-section">
+		<div class="">
+				<div class="row">
+					<div class="col-md-6 col-xs-12 ">
+						<p class="">Admin Maintenance</p>
+					</div>
+				</div>
+		</div>
+	</div>
+  
+  <div class="container-fluid">
+	  <div class="row margint"  >
+	   
+	    <div class="col-md-3 col-sm-5">
+	      
+	     <div class="card card3">
+	       <div class="card-body3">
+	        <div ng-controller="UserListCtrl">
+	         <h style="color:skyblue;font-size:25px;font-weight:bold">No of Users</h>
+	          <span class="pull-right" style="font-size:30px;color:red;padding-left:10px;">   {{ users.length}}<span>  
+	        </div> 
+	    </div>
+	   </div> 
+   </div>	
+   
+   <div class="col-md-3   col-sm-5  ">
+     <div class="card card3">
+	   <div class="card-body3">
+        <div ng-controller="EventListCtrl">
+	      <h style="color:skyblue;font-size:25px;font-weight:bold">No of Events</h>
+	      <span class="pull-right" style="font-size:30px;color:red;padding-left:10px;">   {{ eventList.length}}<span>  
+	   </div>
+	  </div>
+	 </div>
+    </div> 
+   </div>
+ <div ng-controller="adminCtrl">  
+    <div class="row margint">
+      <div class="col-md-3 ">
+        <div  ng-click="goUsers()" class="card card2 margint" >
+         
+           <div class="card-body">
+             <h4 class="card-title text-center">Manage Users</h4>
+             <img class="card-img-top margind" src="images/users.png" alt="Card image cap">
+          </div>
+         </div>
+      </div>
+    <div class="col-md-3">
+        <div ng-click="goEvents()" class="card card2 margint" >
+           <div class="card-body">
+             <h4 class="card-title text-center">Manage Events</h4>
+             <img class="card-img-top margind" src="images/events.jpg" alt="Card image cap">  
+         </div>
+        </div>
+      </div>
+       <div class="col-md-3">
+        <div ng-click="goPrivileges()" class="card card2 margint" >
+           <div class="card-body">
+             <h4 class="card-title text-center">Manage Privileges</h4>
+             <img class="card-img-top margind" src="images/privileges.jpg" alt="Card image cap">
+         </div>
+        </div>
+      </div>
+       <div class="col-md-3">
+        <div ng-click="goRoles()" class="card card2 margint" >
+           <div class="card-body">
+              <h4 class="card-title text-center">Manage Roles</h4>
+              <img class="card-img-top margind" src="images/roles.jpg" alt="Card image cap">
+          </div>
+         </div>
+       </div>
+     </div>
+   </div>
+    <div class="row margint">
+      <div class="col-md-4 ">
+        <h style="color:skyblue;font-size:30"> Post News on </h>
+      </div>
+    </div>	
+    <div class="row ">
+      <div class="col-md-3 margind margint">
+        <div class="card card2 " ng-click="facebook()">
+         
+           <div class="card-body">
+             <h4 class="card-title text-center">Facebook</h4>
+             <img class="card-img-top margind" src="images/facebook.png" alt="Card image cap">
+          </div>
+         </div>
+      </div>
+    <div class="col-md-3">
+        <div class="card card2 margind margint" ng-click="twitter()">
+           <div class="card-body">
+             <h4 class="card-title text-center">Twitter</h4>
+             <img class="card-img-top margind" src="images/twitter.jpg" alt="Card image cap">  
+         </div>
+        </div>
+      </div>
+       <div class="col-md-3">
+     
+        <div ng-click="linkedin()" class="card card2 margind margint " >
+           <div class="card-body">
+             <h4 class="card-title text-center">Linked in</h4>
+             <img class="card-img-top margind" src="images/linkedin.jpg" alt="Card image cap">
+         </div>
+      
+       </div>
+      </div>
+       <div class="col-md-3">
+        <div class="card card2 margind margint" ng-click="company()">
+           <div class="card-body">
+              <h4 class="card-title text-center">Company's Website</h4>
+              <img class="card-img-top margind" src="images/comapny.jpg" alt="Card image cap">
+          </div>
+         </div>
+       </div>
+     </div>
+  </div>  

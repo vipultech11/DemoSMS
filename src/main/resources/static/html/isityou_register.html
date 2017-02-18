@@ -1,0 +1,126 @@
+    <div class="bg">
+	    <div class="row">
+            <div ng-controller="IsItYouRegisterCtrl" class="col-sm-4 col-sm-offset-4 ">
+              <div class="container isityou-main-container">
+                <header id="header" >
+                   <p class="text-success headerfont">Signup</p>
+                </header> 
+                <form class="userForm" name="userForm" method="post" novalidate>
+                        <label>FIRSTNAME:</label>
+                        <input name="username" type="text"  ng-maxlength="255" class="form-control textbox" ng-model="user.firstName" required />
+                        <p ng-show="userForm.username.$dirty && userForm.username.$error.required" class="text-danger">Your firstname is required.</p>
+                         <p ng-show="userForm.username.$dirty &&userForm.username.$error.maxlength" class="text-danger">firstname should be maximumlength .</p>
+                        <br>
+                        <label>LASTNAME:</label>
+                        <input name="lastname" type="text" ng-maxlength="255" class="form-control textbox"placeholder="lastname" ng-model="user.lastName" required>
+                        <span ng-show="userForm.lastname.$dirty && userForm.lastname.$error.required" class="text-danger">Your lastname is required.</span>
+                         <p ng-show="userForm.lastname.$dirty &&userForm.lastname.$error.maxlength" class="text-danger">lastname should be maximumlength .</p>
+                        <br>
+                        <label>EMAIL:</label>
+                        <input name="emailname" type="text" class="form-control textbox"placeholder="EMAIL" ng-model="user.emailId" required>
+                        <span ng-show="userForm.emailname.$dirty && userForm.emailname.$error.required" class="text-danger">Your emailid is required.</span>
+                        <br>
+                        <label>MOBILE:</label>
+                        <input name="mobile" type="text" class="form-control textbox" placeholder="mobile" ng-model="user.mobileNumber" required>
+                        <span ng-show="userForm.mobile.$dirty && userForm.mobile.$error.required" class="text-danger">Your mobilenumber is required.</span>
+                        <br>
+                        <label>Take Photo:</label>                    
+                        <video width="400" height="340" autoplay="true" id="videoElement"></video>
+                        <button type="button" id="take">Take <span id="take-count">1</span></button><br/>
+                        <canvas id="canvas" style="display:none;"></canvas>
+                        <br>
+                        <label>Photo:</label>  <br>                  
+                        <img width="400" height="340" id="photo" alt="photo">
+                        <input type="hidden" class="form-control textbox" name="base64Image1" id="data1" aria-describedby="base64ImageHelp" placeholder="Enter photo base64" ng-model="user.base64Image1"/>
+                        <input type="hidden" class="form-control textbox" name="base64Image2" id="data2" aria-describedby="base64ImageHelp" placeholder="Enter photo base64" ng-model="user.base64Image2"/>
+                        <input type="hidden" class="form-control textbox" name="base64Image3" id="data3" aria-describedby="base64ImageHelp" placeholder="Enter photo base64" ng-model="user.base64Image3"/>
+                        <br>
+                        <div>
+                            <div class="modal-footer">
+                                <button ng-disabled="userForm.$invalid" type="button" class="btn btn-primary" ng-click="save()">Submit</button>
+                                <button type="button" class="btn btn-primary"ng-click="cancel()">Cancel</button>    
+                                <img id="spinner" src="images/spin.gif" style="height: 24px; width: 24px;" ng-show="showSpinner">
+                            </div>
+                        </div>
+               </form>
+             </div>  
+               
+
+        <script>
+            var video = document.querySelector("#videoElement");
+
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+            if (navigator.getUserMedia) {
+                navigator.getUserMedia({video: true}, handleVideo, videoError);
+            }
+
+            function handleVideo(stream) {
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+                videoPlaying = true;
+                
+                var takeCount = 1;
+                document.getElementById('take').addEventListener('click', function () {
+                    if (videoPlaying) {
+                        var canvas = document.getElementById('canvas');
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        canvas.getContext('2d').drawImage(video, 0, 0);
+                        var data  = canvas.toDataURL('image/png');
+                        document.getElementById('photo').setAttribute('src', data);
+                        startPos  = data.indexOf(",");
+                        endPos    = data.length;
+                        finaldata = data.substr(startPos + 1, endPos);
+                        document.getElementById('data' + takeCount).value = finaldata;
+                        takeCount = takeCount + 1;
+                        if (takeCount == 4) {
+                        	document.getElementById('videoElement').setAttribute("style", "display: none");
+                            document.getElementById('take').setAttribute("style", "display: none");
+                        } else {
+                            document.getElementById('take-count').innerHTML = takeCount;
+                        }
+                        
+                    //    document.getElementById("scanform").submit();
+//                        var http = new XMLHttpRequest();
+//                        var url = "https://isityouws.net/isityouwebservice/isityouws.asmx/Web_Authenticate";
+//                        var params = "data=" + finaldata + "&username=Ganesh&SAK=873723267&DeviceType=W&AS=false";
+//                        http.open("POST", url, true);
+//                        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//                        http.onreadystatechange = function () {
+//                            alert(http.status);
+//                            if (http.readyState == 4 && http.status == 200) {
+//                                alert("hi");
+//                                alert(http.responseText);
+//                            }
+//                        }
+//                        http.send(params);
+
+//                        var url = "https://isityouws.net/isityouwebservice/isityouws.asmx/Web_Authenticate";
+//                        var method = "POST";
+//                        var postData = "data=" + finaldata + "&username=Ganesh&SAK=873723267&DeviceType=W&AS=false";
+//                        var async = true;
+//                        var request = new XMLHttpRequest();
+//                        request.onreadystatechange = function () {
+//
+//                            var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+//                            var data = request.responseText; // Returned data, e.g., an HTML document.
+//                            alert(status);
+//                        }
+//                        request.open(method, url, async);
+//                        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//                        request.send(postData);
+
+                    }
+                }, false);
+            }
+
+            function videoError(e) {
+                alert("Something went wrong" + console.log(e));
+                console.log(e);
+            }
+        </script>	
+            </div>
+            <br/>
+       </div>
+    </div>
